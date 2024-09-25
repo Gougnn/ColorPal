@@ -1,0 +1,3 @@
+Adapter hex+rgb labels pour utiliser la scène custom_label
+Clean fichier
+Clean scripts
