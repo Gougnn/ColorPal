@@ -21,8 +21,6 @@ var from_10_to_16_base : Dictionary = {
 	}
 @onready var rgb_codes = %RGBCodes
 
-#blabluablu
-
 func reset_children(node : Node):
 	for n in node.get_children():
 		node.remove_child(n)
@@ -40,6 +38,3 @@ func update_color_codes(colors : Array[Color]) -> void:
 	for n in get_children():
 		n.set_text_codes()
 		n.adapt_font_size(2.8)
-
-#Maintenant je peux push 
-#commit
