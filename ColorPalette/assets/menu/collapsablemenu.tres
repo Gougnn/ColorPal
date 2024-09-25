@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bnpmqlwa7re2x"]
+
+[ext_resource type="FontFile" uid="uid://dgm00xei5xy21" path="res://assets/menu/Roboto-Bold.ttf" id="1_l7xwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6vga"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_176rm"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l1lj"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p20cg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq7lw"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oujxu"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[resource]
+default_font = ExtResource("1_l7xwh")
+Button/constants/h_separation = 4
+Button/styles/focus = SubResource("StyleBoxEmpty_x6vga")
+Button/styles/hover = SubResource("StyleBoxFlat_176rm")
+Button/styles/normal = SubResource("StyleBoxFlat_7l1lj")
+Button/styles/pressed = SubResource("StyleBoxFlat_7l1lj")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_p20cg")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_kq7lw")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_oujxu")

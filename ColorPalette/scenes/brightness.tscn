@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://sp3tvjdgjesk"]
+
+[ext_resource type="Theme" uid="uid://bnpmqlwa7re2x" path="res://assets/menu/collapsablemenu.tres" id="1_8a8xv"]
+[ext_resource type="Texture2D" uid="uid://dddj1kjfrxf05" path="res://assets/svg/caret-down-fill.svg" id="2_hb0pj"]
+
+[node name="Brightness" type="VBoxContainer"]
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 0
+
+[node name="BriTitle" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_8a8xv")
+text = "Luminosité"
+icon = ExtResource("2_hb0pj")
+alignment = 0
+
+[node name="BriExpandable" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BriExpandable"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BriExpandable/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Red" type="RichTextLabel" parent="BriExpandable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/default_color = Color(1, 0.705882, 0.705882, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Rouge
+"
+fit_content = true
+
+[node name="Green" type="RichTextLabel" parent="BriExpandable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/default_color = Color(0.705882, 1, 0.705882, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Vert"
+fit_content = true
+
+[node name="Blue" type="RichTextLabel" parent="BriExpandable/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/default_color = Color(0.705882, 0.705882, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Bleu
+"
+fit_content = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BriExpandable/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RedBriSlide" type="HSlider" parent="BriExpandable/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+value = 0.42
+
+[node name="GreenBriSlide" type="HSlider" parent="BriExpandable/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+value = 0.34
+
+[node name="BlueBriSlide" type="HSlider" parent="BriExpandable/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+value = 0.33
