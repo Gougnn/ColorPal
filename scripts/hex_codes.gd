@@ -41,3 +41,4 @@ func update_color_codes(colors : Array[Color]) -> void:
 		n.set_text_codes()
 		n.adapt_font_size(2.8)
 
+#Maintenant je peux push 
