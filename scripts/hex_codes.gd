@@ -32,9 +32,14 @@ func update_color_codes(colors : Array[Color]) -> void:
 	for i in colors.size():
 		var label = CUSTOM_LABEL.instantiate()
 		label.background_color = colors[i]
-		
+		label.siblings_number = colors.size()
+		label.ready.connect(upl.bind(label))
 		add_child(label)
 	
-	for n in get_children():
-		n.set_text_codes()
-		n.adapt_font_size(2.8)
+	#for n in get_children():
+		#n.set_text_codes()
+		#n.adapt_font_size()
+
+func upl(n):
+	n.set_text_codes()
+	n.adapt_font_size()

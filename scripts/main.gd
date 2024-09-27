@@ -45,7 +45,7 @@ func vector_cos(value : Vector3):
 	
 func get_gradient(steps : float):
 	var colors : Array[Color] = []
-	var res : float = 1.0/(steps)
+	var res : float = 1.0/(steps+1.0)
 	var x : float =0.0
 	
 	for i in steps:
