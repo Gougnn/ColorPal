@@ -40,7 +40,7 @@ func font_size():
 
 func isolate_colors(toggle : bool):
 	for c in childs:
-		c.border.visible = toggle
+		c.color_isolation(toggle)
 
 
 func _on_resized():

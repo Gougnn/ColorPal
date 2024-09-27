@@ -18,6 +18,10 @@ extends PanelContainer
 		is_isolated_color = value
 		if is_instance_valid(codes_container):
 			codes_container.isolate_colors(value)
+@export var randomize : bool:
+	set(value):
+		randomize = false
+		randomize_bcfs()
 
 @export var brightness : Vector3:
 	set(value):
@@ -73,7 +77,24 @@ func get_stepped_gradient(steps : float):
 
 func _ready():
 	codes_container.update_label_codes(get_stepped_gradient(color_step))
-	brightness = brightness
-	contrast = contrast
-	frequency = frequency
-	shift = shift
+	randomize_bcfs()
+	#brightness = brightness
+	#contrast = contrast
+	#frequency = frequency
+	#shift = shift
+
+
+func randomize_bcfs():
+	var rng = RandomNumberGenerator.new()
+	brightness = Vector3(0.3, 0.3, 0.3)
+	contrast = Vector3(0.8, 0.4, 0.3)
+	frequency = Vector3(
+		rng.randf_range(0.7, 1.0),
+		rng.randf_range(0.7, 1.0),
+		rng.randf_range(0.7, 1.0)
+		)
+	shift = Vector3(
+		rng.randf_range(0.0, 1.0),
+		rng.randf_range(0.0, 1.0),
+		rng.randf_range(0.0, 1.0)
+		)

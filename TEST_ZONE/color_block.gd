@@ -24,6 +24,7 @@ var from_10_to_16_base : Dictionary = {
 	15: 'F',
 	}
 
+var border_color : Color = Color.WHITE
 
 func _ready():
 	adapt_font_size(1)
@@ -52,6 +53,9 @@ func adapt_font_size(value):
 	hex["theme_override_font_sizes/font_size"] = int(value*16)
 	rgb["theme_override_font_sizes/font_size"] = int(value*10)
 
+func color_isolation(value):
+	border.visible = value
+
 
 func _on_mouse_entered():
 	if fade:
@@ -59,7 +63,6 @@ func _on_mouse_entered():
 	fade = create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT)
 	fade.tween_property(code_manager, "modulate:a", 1.0, 0.15)
 	fade.tween_property(self, "size_flags_stretch_ratio", 1.5, 0.25)
-	print(size.x)
 
 func _on_mouse_exited():
 	if fade:
@@ -72,3 +75,21 @@ func _on_mouse_exited():
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.double_click:
 		DisplayServer.clipboard_set(hex.text)
+
+
+func _on_resized():
+	if not border.visible:
+		return
+	var box : StyleBox
+	if size.x < 30:
+		box = StyleBoxEmpty.new()
+	else:
+		box = StyleBoxFlat.new()
+		box.bg_color = Color(0, 0, 0, 0)
+		box.border_color = border_color
+		box.border_width_bottom = size.x *0.05
+		box.border_width_left = size.x *0.05
+		box.border_width_top = size.x *0.05
+		box.border_width_right = size.x *0.05
+
+	border.set("theme_override_styles/panel", box)

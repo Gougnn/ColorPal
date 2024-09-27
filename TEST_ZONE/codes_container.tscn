@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnxdrp2bkhkqj"]
 
-[ext_resource type="Script" path="res://TEST_ZONE/observer.gd" id="1_74mjg"]
+[ext_resource type="Script" path="res://TEST_ZONE/colors_manager.gd" id="1_74mjg"]
 [ext_resource type="Script" path="res://TEST_ZONE/codes_container.gd" id="2_dhwmq"]
 [ext_resource type="PackedScene" uid="uid://dxbm6pip3ibt7" path="res://TEST_ZONE/color_block.tscn" id="3_d62ho"]
 [ext_resource type="Shader" path="res://assets/shader/collapsable_menu.gdshader" id="3_h3aoc"]
@@ -30,12 +30,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0220")
 script = ExtResource("1_74mjg")
-color_step = 20.0
-is_gradient = true
-brightness = Vector3(0.43, 0.27, 0.235)
-contrast = Vector3(0.195, 0.04, 0.43)
-frequency = Vector3(0.38, 1.585, 0.605)
-shift = Vector3(0.125, 1.205, 0.735)
+color_step = 10.0
+brightness = Vector3(0.43, 0.755, 0.14)
+contrast = Vector3(0.585, 0.35, 0.885)
+frequency = Vector3(0.555, 0.32, 0.82)
+shift = Vector3(-3.09, 2.035, 2.805)
 
 [node name="Gradient" type="Panel" parent="."]
 unique_name_in_owner = true
