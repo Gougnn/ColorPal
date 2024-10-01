@@ -23,7 +23,7 @@ func _ready():
 	modulate.a = 1
 
 func set_text_codes():
-	text = '\n\n\n' + color_to_rgb(background_color)
+	#text = '\n\n\n' + color_to_rgb(background_color)
 	hex.text =color_to_hex(background_color)
 	
 

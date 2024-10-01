@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5y28o"]
 [ext_resource type="Theme" uid="uid://bnpmqlwa7re2x" path="res://assets/menu/collapsablemenu.tres" id="2_4k6o1"]
-[ext_resource type="Texture2D" uid="uid://dddj1kjfrxf05" path="res://assets/svg/caret-down-fill.svg" id="3_1d7s6"]
 [ext_resource type="Script" path="res://scripts/graph_visualizer.gd" id="5_irdxs"]
 [ext_resource type="PackedScene" uid="uid://hl4og6dwmmpt" path="res://scenes/display.tscn" id="5_k6gth"]
 [ext_resource type="PackedScene" uid="uid://c4mix2cyv2jqn" path="res://scenes/hex_codes_viz.tscn" id="6_w2egf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d6q75"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nfe17"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fi15v"]
 bg_color = Color(0.129412, 0.129412, 0.129412, 1)
@@ -101,7 +102,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_4k6o1")
 text = "Luminosité"
-icon = ExtResource("3_1d7s6")
+icon = SubResource("CompressedTexture2D_nfe17")
 alignment = 0
 
 [node name="BriExpandable" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/Menu/Brightness"]
@@ -192,7 +193,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_4k6o1")
 text = "Contraste"
-icon = ExtResource("3_1d7s6")
+icon = SubResource("CompressedTexture2D_nfe17")
 alignment = 0
 
 [node name="ConExpandable" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/Menu/Contrast"]
@@ -282,7 +283,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_4k6o1")
 text = "Fréquence"
-icon = ExtResource("3_1d7s6")
+icon = SubResource("CompressedTexture2D_nfe17")
 alignment = 0
 
 [node name="FreExpandable" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/Menu/Frequency"]
@@ -372,7 +373,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_4k6o1")
 text = "Décalage"
-icon = ExtResource("3_1d7s6")
+icon = SubResource("CompressedTexture2D_nfe17")
 alignment = 0
 
 [node name="ShiExpandable" type="MarginContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer/Menu/Shift"]

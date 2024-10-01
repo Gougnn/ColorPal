@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0m2pc1cr7b15"
-path="res://.godot/imported/caret-right-fill.svg-3440dace88e32679f1072122b8f1a4fe.ctex"
+uid="uid://box4o2pxiu3mr"
+path="res://.godot/imported/chevron-updown.svg-567489b6da10236f86f5184d45900a4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/svg/caret-right-fill.svg"
-dest_files=["res://.godot/imported/caret-right-fill.svg-3440dace88e32679f1072122b8f1a4fe.ctex"]
+source_file="res://assets/svg/chevron-updown.svg"
+dest_files=["res://.godot/imported/chevron-updown.svg-567489b6da10236f86f5184d45900a4b.ctex"]
 
 [params]
 

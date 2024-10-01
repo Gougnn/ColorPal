@@ -6,10 +6,10 @@
 [ext_resource type="Shader" path="res://assets/shader/collapsable_menu.gdshader" id="3_h3aoc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0220"]
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 anti_aliasing = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov062"]
@@ -30,15 +30,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0220")
 script = ExtResource("1_74mjg")
-color_step = 10.0
-brightness = Vector3(0.43, 0.755, 0.14)
-contrast = Vector3(0.585, 0.35, 0.885)
-frequency = Vector3(0.555, 0.32, 0.82)
-shift = Vector3(-3.09, 2.035, 2.805)
+color_step = 20.0
+brightness = Vector3(0.5, 0.5, 0.5)
+contrast = Vector3(0.5, 0.5, 0.5)
+frequency = Vector3(1.055, 1.48, 0.965)
+shift = Vector3(-5.03, 1.07, 3.845)
 
 [node name="Gradient" type="Panel" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.909804, 0.0666667, 0.137255, 1)
 material = SubResource("ShaderMaterial_ov062")
 layout_mode = 2
 
@@ -49,48 +48,63 @@ theme_override_constants/separation = 0
 script = ExtResource("2_dhwmq")
 
 [node name="ColorBlock" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock2" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock3" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock4" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock5" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock6" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock7" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock8" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock9" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock10" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock11" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock12" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock13" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock14" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock15" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock16" parent="CodesContainer" instance=ExtResource("3_d62ho")]
@@ -102,6 +116,7 @@ visible = false
 layout_mode = 2
 
 [node name="ColorBlock18" parent="CodesContainer" instance=ExtResource("3_d62ho")]
+visible = false
 layout_mode = 2
 
 [node name="ColorBlock19" parent="CodesContainer" instance=ExtResource("3_d62ho")]
