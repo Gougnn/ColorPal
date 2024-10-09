@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=28 format=3 uid="uid://bfnahovc08m1s"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://bfnahovc08m1s"]
 
 [ext_resource type="FontFile" uid="uid://dgm00xei5xy21" path="res://assets/menu/Roboto-Bold.ttf" id="1_fpbh2"]
 [ext_resource type="Texture2D" uid="uid://cxku2tb2o32u6" path="res://assets/svg/circle-fill.svg" id="1_m7qbf"]
@@ -143,6 +143,17 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxefy"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 32.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
 [resource]
 default_font = ExtResource("5_adibo")
 default_font_size = 16
@@ -212,3 +223,4 @@ SpinBox/icons/updown = SubResource("CompressedTexture2D_j8xta")
 TooltipLabel/colors/font_color = Color(0.615686, 0.615686, 0.615686, 1)
 TooltipLabel/fonts/font = ExtResource("7_steio")
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_3vv7o")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_rxefy")

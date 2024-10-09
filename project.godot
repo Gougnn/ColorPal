@@ -10,16 +10,18 @@ config_version=5
 
 [application]
 
-config/name="ColorPalette"
+config/name="CoolPal"
+config/version="0.0.1.0"
 run/main_scene="res://scenes/main_scene_rearrange.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+run/low_processor_mode=true
 boot_splash/show_image=false
 config/icon="res://assets/svg/paint-bucket.svg"
 
 [display]
 
-window/size/viewport_width=1000
-window/size/viewport_height=529
+window/size/viewport_width=644
+window/size/viewport_height=621
 window/handheld/orientation=1
 window/vsync/vsync_mode=0
 
@@ -57,3 +59,4 @@ remove_color={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.113725, 0.113725, 0.113725, 1)

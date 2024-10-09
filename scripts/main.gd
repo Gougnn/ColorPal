@@ -1,7 +1,7 @@
 extends Control
 
-const CARET_RIGHT_FILL = preload("res://assets/svg/caret-right-fill.svg")
-const CARET_DOWN_FILL = preload("res://assets/svg/caret-down-fill.svg")
+const CARET_RIGHT_FILL = preload("res://assets/svg/chevron-down.svg")
+const CARET_DOWN_FILL = preload("res://assets/svg/chevron-right.svg")
 
 @onready var visualizer = %Visualizer
 @onready var display = %Display

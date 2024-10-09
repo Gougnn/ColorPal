@@ -1,11 +1,10 @@
 extends Node2D
 
-var resolution : float = 100
-
 @onready var red_curve : Line2D = %Red
 @onready var green_curve : Line2D = %Green
 @onready var blue_curve : Line2D = %Blue
 
+var resolution : float = 100
 var brightness : Vector3:
 	set(value):
 		brightness = value
@@ -41,11 +40,9 @@ func bake_curve(curve : Line2D, br : float, co : float, fr : float, sh : float) 
 	var py : float
 	
 	for i in resolution:
-		var y = br + co * cos(2.0 * PI *(fr * x + sh))
+		var y : float = br + co * cos(2.0 * PI *(fr * x + sh))
 		if y != py:
 			curve.add_point(Vector2(x, -y*0.5)*120)
-		
-			
 		x += step
 		py = y
 
