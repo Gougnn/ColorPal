@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4eqx5y65kthc"]
+
+[ext_resource type="Script" path="res://TEST_ZONE/curve_manager.gd" id="1_37upw"]
+[ext_resource type="Script" path="res://TEST_ZONE/curve_draw.gd" id="1_yfp1h"]
+
+[node name="CurvesDisplay" type="SubViewportContainer"]
+offset_right = 197.0
+offset_bottom = 66.0
+script = ExtResource("1_37upw")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(242, 100)
+render_target_update_mode = 4
+
+[node name="CurvesDraw" type="Node2D" parent="SubViewport"]
+script = ExtResource("1_yfp1h")
+width = 245.0
+height = 96.0
+brightness = Vector3(0.705, 0.545, 0.315)
+contrast = Vector3(0.3, 1.07, 0.39)
+frequency = Vector3(1, -0.705, -1.185)
+shift = Vector3(0.565, 0.025, 0)

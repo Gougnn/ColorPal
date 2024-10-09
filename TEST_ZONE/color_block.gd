@@ -1,10 +1,10 @@
 extends Panel
 
-@onready var hex_h = %HexH
-@onready var hex_v = %HexV
-@onready var rgb = %Rgb
-@onready var border = %Border
-@onready var code_manager = %CodeManager
+@onready var hex_h : Label = %HexH
+@onready var hex_v : Label = %HexV
+@onready var rgb : Label = %Rgb
+@onready var border : Panel = %Border
+@onready var code_manager : VBoxContainer = %CodeManager
 
 var fade : Tween
 var from_10_to_16_base : Dictionary = {
@@ -34,12 +34,12 @@ var border_color : Color = Color.WHITE
 var is_border : bool = false
 var block_size : float = 100
 
-func _ready():
+
+func _ready() -> void:
 	adapt_font_size(1)
 
 
-
-func custom_b10_to_b16( value : int ):
+func custom_b10_to_b16( value : int ) -> String:
 	var first_digit : int = floor(float(value) / 16.0)
 	var second_digit : int = floor((value % 16))
 	
@@ -53,7 +53,7 @@ func color_to_hex(color : Color) -> String:
 		   custom_b10_to_b16(color.g8) +\
 		   custom_b10_to_b16(color.b8)
 
-func set_vertical_or_horizontal(toggle):
+func set_vertical_or_horizontal(toggle : bool) -> void:
 	if toggle:
 		hex_h.hide()
 		hex_v.show()
@@ -61,29 +61,38 @@ func set_vertical_or_horizontal(toggle):
 		hex_v.hide()
 		hex_h.show()
 
-func set_codes(color : Color):
+func set_codes(color : Color) -> void:
 	var hex_code = color_to_hex(color)
-	hex_h.text = hex_code
 	var hex_code_v : String = ''
+	
 	for i in hex_code:
 		hex_code_v += str(i) + '\n'
-	hex_v.text = hex_code_v.left(18)
-		
-	rgb.text = color_to_rgb(color)
 	
+	hex_h.text = hex_code
+	hex_v.text = hex_code_v.left(18)
+	rgb.text = color_to_rgb(color)
 	code_manager.modulate = Color(0, 0, 0, 0) if color.get_luminance() > 0.5 else Color(1, 1, 1, 0)
 
-func adapt_font_size(value):
+func adapt_font_size(value : float) -> void:
 	hex_h["theme_override_font_sizes/font_size"] = int(value*16)
 	hex_v["theme_override_font_sizes/font_size"] = int(value*24)
 	hex_v["theme_override_constants/line_spacing"] = int(-value * 24 / 3)
 	rgb["theme_override_font_sizes/font_size"] = int(value*10)
 
-func color_isolation(toggle, block_size):
+func adapt_text(color_block_size : Vector2):
+	var ratio : float = color_block_size.y/color_block_size.x
+	if ratio < 1.5:
+		pass#SET HORIZONTAL
+	else:
+		pass#SET VERTICAL
+	
+	
+
+func color_isolation(toggle : bool, block_size : float) -> void:
 	self.block_size = block_size
 	is_border = toggle
 	border.visible = is_border
-	var box = StyleBoxFlat.new()
+	var box : StyleBox = StyleBoxFlat.new()
 	box.bg_color = Color(0, 0, 0, 0)
 	box.border_color = border_color
 	box.border_width_bottom = block_size *0.05
@@ -94,26 +103,24 @@ func color_isolation(toggle, block_size):
 	border.set("theme_override_styles/panel", box)
 
 
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	if fade:
 		fade.kill()
 	fade = create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT)
 	fade.tween_property(code_manager, "modulate:a", 1.0, 0.15)
 	fade.tween_property(self, "size_flags_stretch_ratio", 1.3, 0.25)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	if fade:
 		fade.kill()
 	fade = create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT)
 	fade.tween_property(code_manager, "modulate:a", 0.0, 0.25)
 	fade.tween_property(self, "size_flags_stretch_ratio", 1, 0.25)
 
-
-func _on_gui_input(event):
+func _on_gui_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton and event.double_click:
 		DisplayServer.clipboard_set(hex_h.text)
 
-
-func _on_resized():
+func _on_resized() -> void:
 	color_isolation(is_border, self.block_size)
 

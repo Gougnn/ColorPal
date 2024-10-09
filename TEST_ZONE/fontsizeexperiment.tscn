@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr1nmuvxl3kre"]
+
+[ext_resource type="Script" path="res://TEST_ZONE/fontsizeexperiment.gd" id="1_ojfxc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3m5"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mrlj"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 32
+border_width_top = 32
+border_width_right = 32
+border_width_bottom = 32
+border_color = Color(1, 1, 1, 1)
+
+[node name="ColorDisplay" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 644.0
+offset_bottom = 621.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 16
+script = ExtResource("1_ojfxc")
+string_content = "dfdfdf"
+font_size = 128
+is_isolated = true
+
+[node name="Block" type="Panel" parent="."]
+self_modulate = Color(0.87451, 0.87451, 0.87451, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xh3m5")
+
+[node name="Border" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mrlj")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="resized" from="." to="." method="_on_resized"]

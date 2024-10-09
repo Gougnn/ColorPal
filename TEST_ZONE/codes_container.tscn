@@ -30,11 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0220")
 script = ExtResource("1_74mjg")
-color_step = 20.0
-brightness = Vector3(0.5, 0.5, 0.5)
-contrast = Vector3(0.5, 0.5, 0.5)
-frequency = Vector3(1.055, 1.48, 0.965)
-shift = Vector3(-5.03, 1.07, 3.845)
 
 [node name="Gradient" type="Panel" parent="."]
 unique_name_in_owner = true
