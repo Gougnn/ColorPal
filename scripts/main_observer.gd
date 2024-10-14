@@ -22,9 +22,9 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var path_to_settings : String = "user://settings.cfg"
 
 
-func load_settings(path : String):
-	var config = ConfigFile.new()
-	var data = config.load(path)
+func load_settings(path : String) -> void:
+	var config : ConfigFile = ConfigFile.new()
+	var data : Error = config.load(path)
 	if data != OK:
 		initial_popup.show()
 		config.set_value("Init", "FirstLaunch", true)
@@ -40,23 +40,23 @@ func load_settings(path : String):
 		config.set_value("Init", "FirstLaunch", false)
 		config.save(path)
 	
-	var brightness = config.get_value("Colors", "brightness")
+	var brightness : Vector3 = config.get_value("Colors", "brightness")
 	red_bri_slide.value = brightness.x
 	green_bri_slide.value = brightness.y
 	blue_bri_slide.value = brightness.z
-	var contrast = config.get_value("Colors", "contrast")
+	var contrast : Vector3 = config.get_value("Colors", "contrast")
 	red_con_slide.value = contrast.x
 	green_con_slide.value = contrast.y
 	blue_con_slide.value = contrast.z
-	var frequency = config.get_value("Colors", "frequency")
+	var frequency : Vector3 = config.get_value("Colors", "frequency")
 	red_fre_slide.value = frequency.x
 	green_fre_slide.value = frequency.y
 	blue_fre_slide.value = frequency.z
-	var shift = config.get_value("Colors", "shift")
+	var shift : Vector3 = config.get_value("Colors", "shift")
 	red_shi_slide.value = shift.x
 	green_shi_slide.value = shift.y
 	blue_shi_slide.value = shift.z
-	var color_step = config.get_value("Colors", "steps")
+	var color_step : float = config.get_value("Colors", "steps")
 	spin_box.value = color_step
 
 
@@ -155,15 +155,15 @@ func _on_random_pressed() -> void:
 	red_con_slide.value = contrast.x
 	green_con_slide.value = contrast.y
 	blue_con_slide.value = contrast.z
-	var frequency = Vector3(rng.randf_range(0.1, 0.5), 
-							rng.randf_range(0.1, 0.5),
-							rng. randf_range(0.1, 0.5))
+	var frequency : Vector3 = Vector3(rng.randf_range(0.1, 0.5), 
+									  rng.randf_range(0.1, 0.5),
+									  rng. randf_range(0.1, 0.5))
 	red_fre_slide.value = frequency.x
 	green_fre_slide.value = frequency.y
 	blue_fre_slide.value = frequency.z
-	var shift = Vector3(rng.randf_range(0.0, 1.0), 
-						rng.randf_range(0.0, 1.0), 
-						rng.randf_range(0.0, 1.0))
+	var shift : Vector3 = Vector3(rng.randf_range(0.0, 1.0), 
+								  rng.randf_range(0.0, 1.0), 
+								  rng.randf_range(0.0, 1.0))
 	red_shi_slide.value = shift.x
 	green_shi_slide.value = shift.y
 	blue_shi_slide.value = shift.z
@@ -177,13 +177,13 @@ func _on_colors_manager_gui_input(event : InputEvent) -> void:
 
 
 #REDIRECT to Inigo Quilez blog
-func _on_rich_text_label_meta_clicked(meta):
+func _on_rich_text_label_meta_clicked(meta) -> void:
 	OS.shell_open(str(meta))
 
-func _notification(what):
+func _notification(what) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		var config = ConfigFile.new()
-		var data = config.load(path_to_settings)
+		var config : ConfigFile = ConfigFile.new()
+		var data : Error = config.load(path_to_settings)
 		if data != OK:
 			return
 		

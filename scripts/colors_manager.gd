@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var gradient = %Gradient
-@onready var codes_container = %CodesContainer
+@onready var gradient : Panel = %Gradient
+@onready var codes_container : HBoxContainer = %CodesContainer
 
 var color_step : float = 10:
 	set(value):
@@ -101,6 +101,6 @@ func _ready() -> void:
 	codes_container.update_label_codes(get_stepped_gradient(color_step), Vector2(378, 570))
 
 
-func _on_resized():
+func _on_resized() -> void:
 	if is_instance_valid(codes_container):
 		codes_container.update_label_codes(get_stepped_gradient(color_step), size)

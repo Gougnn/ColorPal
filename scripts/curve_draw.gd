@@ -1,6 +1,6 @@
 extends Node2D
 
-const ROBOTO_BOLD_CONDENSED = preload("res://assets/menu/Roboto-BoldCondensed.ttf")
+const ROBOTO_BOLD_CONDENSED : Font = preload("res://assets/menu/Roboto-BoldCondensed.ttf")
 @export_range(50, 200, 1) var resolution : int = 100:
 	set(value):
 		resolution = value
@@ -41,7 +41,7 @@ func vector_cos(value : Vector3) -> Vector3:
 		cos(value.z)
 	)
 
-func create_points_rgb(a, b, c, d):
+func create_points_rgb(a, b, c, d) -> PackedVector2Array:
 	var x : float = 0
 	var res : PackedVector2Array = []
 	for i in resolution:
@@ -50,7 +50,7 @@ func create_points_rgb(a, b, c, d):
 	
 	return res
 
-func create_points_luminance(a, b, c, d):
+func create_points_luminance(a, b, c, d) -> PackedVector2Array:
 	var x : float = 0
 	var res : PackedVector2Array = []
 	for i in resolution:
@@ -61,19 +61,12 @@ func create_points_luminance(a, b, c, d):
 	
 	return res
 
-func _draw():
+func _draw() -> void:
 	for s in color_step:
-		var x = (s/color_step + 0.5/color_step) * width
+		var x : float = (s/color_step + 0.5/color_step) * width
 		draw_line(Vector2(x, 0), Vector2(x, height + 4), Color("282828"), -1, true)
 	draw_string(ROBOTO_BOLD_CONDENSED, Vector2(2,95), '0', HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color("686868"))
 	draw_string(ROBOTO_BOLD_CONDENSED, Vector2(2,17), '1', HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color("686868"))
 	draw_polyline(create_points_rgb(brightness.x, contrast.x, frequency.x, shift.x), Color.LIGHT_CORAL, 2.0, true)
 	draw_polyline(create_points_rgb(brightness.y, contrast.y, frequency.y, shift.y), Color.LIGHT_GREEN, 2.0, true)
 	draw_polyline(create_points_rgb(brightness.z, contrast.z, frequency.z, shift.z), Color.LIGHT_SEA_GREEN, 2.0, true)
-
-
-
-
-
-
-

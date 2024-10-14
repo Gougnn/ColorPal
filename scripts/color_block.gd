@@ -2,10 +2,10 @@ extends Control
 
 signal color_copied
 
-const COPY = preload("res://assets/svg/copy_cursor.svg")
+const COPY : CompressedTexture2D = preload("res://assets/svg/copy_cursor.svg")
 
-@onready var block = $Block
-@onready var border = $Border
+@onready var block : Panel = $Block
+@onready var border : Panel = $Border
 
 var fade : Tween
 @export var string_content : String = '':
@@ -30,7 +30,7 @@ var fade : Tween
 		queue_redraw()
 
 #INITIALIZE
-func _ready():
+func _ready() -> void:
 	Input.set_custom_mouse_cursor(COPY, Input.CURSOR_HELP)
 	mouse_default_cursor_shape = Control.CURSOR_HELP
 	grow_horizontal = Control.GROW_DIRECTION_BOTH
@@ -38,11 +38,11 @@ func _ready():
 	set_self_modulate(Color.TRANSPARENT)
 
 #METHODES
-func adapt_font_size(block_size : Vector2):
+func adapt_font_size(block_size : Vector2) -> float:
 	return min(floor(block_size.x / 2), floor (block_size.y/ 8)) if is_vertical else \
 		   floor(block_size.x / 5)
 
-func get_string_size(string : String, vertical : bool):
+func get_string_size(string : String, vertical : bool) -> Vector2:
 	return font.get_string_size(
 		string,
 		HORIZONTAL_ALIGNMENT_CENTER,
@@ -52,16 +52,16 @@ func get_string_size(string : String, vertical : bool):
 		TextServer.ORIENTATION_VERTICAL if vertical else TextServer.ORIENTATION_HORIZONTAL
 		)
 
-func center_text(string : String, vertical : bool):
-	var s = get_string_size(string, vertical)
+func center_text(string : String, vertical : bool) -> Vector2:
+	var s : Vector2 = get_string_size(string, vertical)
 	return Vector2(size.x * 0.5, (size.y * 0.5)-(s.y * 0.5)) if vertical else \
 		   Vector2((size.x * 0.5)-(s.x*0.5), (size.y * 0.5)+(s.y * 0.3))
 
-func set_contrast_color_text(color : String):
+func set_contrast_color_text(color : String) -> Color:
 	return Color.WHITE if Color.from_string(color, Color.BLACK).get_luminance() < 0.5 else \
 		   Color.BLACK
 
-func draw_outline():
+func draw_outline() -> void:
 	if !is_isolated:
 		border.hide()
 	else:
@@ -77,10 +77,10 @@ func draw_outline():
 		border.set("theme_override_styles/panel", style_box)
 		border.show()
 
-func draw_color_block():
+func draw_color_block() -> void:
 	block.set_self_modulate(Color.from_string(string_content, Color.BLACK))
 
-func draw_string_content():
+func draw_string_content() -> void:
 	font.draw_string(
 		get_canvas_item(),
 		center_text(string_content, is_vertical),
@@ -94,27 +94,27 @@ func draw_string_content():
 		)
 
 #IMBEDDED FUNCTIONS
-func _draw():
+func _draw() -> void:
 	draw_color_block()
 	draw_outline()
 	draw_string_content()
 
 #SIGNAL
-func _on_mouse_entered():
+func _on_mouse_entered() -> void:
 	if fade:
 		fade.kill()
 	fade = create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT)
 	fade.tween_property(self, "self_modulate:a", 1.0, 0.15)
 	fade.tween_property(self, "size_flags_stretch_ratio", 1.3, 0.25)
 
-func _on_mouse_exited():
+func _on_mouse_exited() -> void:
 	if fade:
 		fade.kill()
 	fade = create_tween().set_parallel().set_ease(Tween.EASE_IN_OUT)
 	fade.tween_property(self, "self_modulate:a", 0.0, 0.25)
 	fade.tween_property(self, "size_flags_stretch_ratio", 1, 0.25)
 
-func _on_gui_input(event):
+func _on_gui_input(event) -> void:
 	if event is InputEventMouseButton and event.double_click:
 		DisplayServer.clipboard_set(string_content)
 		emit_signal("color_copied")

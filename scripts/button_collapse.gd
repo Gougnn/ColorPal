@@ -5,10 +5,10 @@ extends Button
 @export var icon_open : CompressedTexture2D
 @export var icon_closed : CompressedTexture2D
 
-func _ready():
+func _ready() -> void:
 	self.toggled.connect(_on_toggled)
 
-func _on_toggled(toggled_on):
+func _on_toggled(toggled_on) -> void:
 	expandable_part.visible = not toggled_on
 	icon = icon_open if toggled_on else icon_closed
 	release_focus()

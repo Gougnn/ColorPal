@@ -1,6 +1,6 @@
 extends SubViewportContainer
 
-@onready var curves_draw = $SubViewport/CurvesDraw
+@onready var curves_draw : Node2D = $SubViewport/CurvesDraw
 
 var brightness : Vector3:
 	set(value):
