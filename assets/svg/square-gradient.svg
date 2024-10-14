@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-dice-6" viewBox="0 0 16 16">
-    <defs>
-      <linearGradient id="Gradient1" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="white" stop-opacity="0" />
-        <stop offset="100%" stop-color="white" />
-      </defs>
-  <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3z"/>
-  <rect x="3" y="3" rx="2" ry="2" width="10" height="10" fill="url(#Gradient1)"/>
-</svg>

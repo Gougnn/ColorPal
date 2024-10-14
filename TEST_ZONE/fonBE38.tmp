@@ -5,12 +5,8 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3m5"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mrlj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjwcv"]
 bg_color = Color(1, 1, 1, 0)
-border_width_left = 32
-border_width_top = 32
-border_width_right = 32
-border_width_bottom = 32
 border_color = Color(1, 1, 1, 1)
 
 [node name="ColorDisplay" type="Control"]
@@ -48,9 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4mrlj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_tjwcv")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

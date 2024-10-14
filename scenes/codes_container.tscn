@@ -1,0 +1,186 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnxdrp2bkhkqj"]
+
+[ext_resource type="Script" path="res://scripts/colors_manager.gd" id="1_74mjg"]
+[ext_resource type="Shader" path="res://assets/shader/gradient.gdshader" id="2_ciktj"]
+[ext_resource type="Script" path="res://scripts/codes_container.gd" id="2_dhwmq"]
+[ext_resource type="PackedScene" uid="uid://dr1nmuvxl3kre" path="res://scenes/color_block.tscn" id="4_o264u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0220"]
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov062"]
+shader = ExtResource("2_ciktj")
+shader_parameter/steps = 5.0
+shader_parameter/brightness = Vector3(0.305, 0.185, 0.3)
+shader_parameter/contrast = Vector3(0.48, 0.54, 0.84)
+shader_parameter/frequency = Vector3(0.77, 0.325, 0.14)
+shader_parameter/shift = Vector3(1.025, 1.725, 0.64)
+
+[node name="ColorsManager" type="PanelContainer"]
+clip_children = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0220")
+script = ExtResource("1_74mjg")
+
+[node name="Gradient" type="Panel" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ov062")
+layout_mode = 2
+
+[node name="CodesContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_dhwmq")
+
+[node name="ColorDisplay" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay2" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay3" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay4" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay5" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay6" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay7" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay8" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay9" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay10" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay11" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay12" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay13" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay14" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay15" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay16" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay17" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay18" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay19" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[node name="ColorDisplay20" parent="CodesContainer" instance=ExtResource("4_o264u")]
+layout_mode = 2
+string_content = ""
+font_size = 16
+is_vertical = true
+is_isolated = false
+
+[connection signal="resized" from="." to="." method="_on_resized"]

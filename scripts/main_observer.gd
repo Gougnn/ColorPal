@@ -1,8 +1,7 @@
 extends Control
 
-const CHEVRON_RIGHT : Resource = preload("res://assets/svg/chevron-right.svg")
-const CHEVRON_DOWN : Resource = preload("res://assets/svg/chevron-down.svg")
 
+@onready var initial_popup = $InitialPopup
 @onready var colors_manager : PanelContainer = %ColorsManager
 @onready var red_bri_slide : HSlider = %RedBriSlide
 @onready var green_bri_slide : HSlider = %GreenBriSlide
@@ -20,51 +19,58 @@ const CHEVRON_DOWN : Resource = preload("res://assets/svg/chevron-down.svg")
 @onready var curves_display = %CurvesDisplay
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+var path_to_settings : String = "user://settings.cfg"
+
+
+func load_settings(path : String):
+	var config = ConfigFile.new()
+	var data = config.load(path)
+	if data != OK:
+		initial_popup.show()
+		config.set_value("Init", "FirstLaunch", true)
+		config.set_value("Colors", "brightness", Vector3(0.53, 0.41, 0.47))
+		config.set_value("Colors", "contrast", Vector3(0.5, 0.31, 0.23))
+		config.set_value("Colors", "frequency", Vector3(0.41, 0.54, 0.35))
+		config.set_value("Colors", "shift", Vector3(0.85, 0.79, 0.54))
+		config.set_value("Colors", "steps", 10.0)
+		config.save(path)
+	
+	if config.get_value("Init", "FirstLaunch", true):
+		initial_popup.show()
+		config.set_value("Init", "FirstLaunch", false)
+		config.save(path)
+	
+	var brightness = config.get_value("Colors", "brightness")
+	red_bri_slide.value = brightness.x
+	green_bri_slide.value = brightness.y
+	blue_bri_slide.value = brightness.z
+	var contrast = config.get_value("Colors", "contrast")
+	red_con_slide.value = contrast.x
+	green_con_slide.value = contrast.y
+	blue_con_slide.value = contrast.z
+	var frequency = config.get_value("Colors", "frequency")
+	red_fre_slide.value = frequency.x
+	green_fre_slide.value = frequency.y
+	blue_fre_slide.value = frequency.z
+	var shift = config.get_value("Colors", "shift")
+	red_shi_slide.value = shift.x
+	green_shi_slide.value = shift.y
+	blue_shi_slide.value = shift.z
+	var color_step = config.get_value("Colors", "steps")
+	spin_box.value = color_step
 
 
 func _ready() -> void:
-	get_window().set_min_size(Vector2i(600, 644-23))
-	get_window().max_size.y = get_window().min_size.y
-	randomize()
-	_on_random_pressed()
-
-#region COLLAPSABLE MENUS
-func _on_bri_button_toggled(toggled_on : bool) -> void:
-	%BriExpandable.visible = not toggled_on
-	%BriButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%BriButton.release_focus()
-	get_window().min_size.y += 65 if not toggled_on else -65
-
-func _on_con_button_toggled(toggled_on : bool) -> void:
-	%ConExpandable.visible = not toggled_on
-	%ConButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%ConButton.release_focus()
-	get_window().min_size.y += 65 if not toggled_on else -65
-
-func _on_fre_button_toggled(toggled_on : bool) -> void:
-	%FreExpandable.visible = not toggled_on
-	%FreButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%FreButton.release_focus()
-	get_window().min_size.y += 65 if not toggled_on else -65
-
-func _on_shi_button_toggled(toggled_on : bool) -> void:
-	%ShiExpandable.visible = not toggled_on
-	%ShiButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%ShiButton.release_focus()
-	get_window().min_size.y += 65 if not toggled_on else -65
-
-func _on_display_toggled(toggled_on : bool) -> void:
-	%DisExpandable.visible = not toggled_on
-	%DisButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%DisButton.release_focus()
-	get_window().min_size.y += 50 if not toggled_on else -50
+	if OS.has_feature("editor"):
+		path_to_settings = "res://settings.cfg"
+	load_settings(path_to_settings)
+		
+	get_window().set_min_size(Vector2i(628, 621))
+	get_window().max_size.x = get_window().min_size.x if initial_popup.visible else 32768
 	
-func _on_gra_button_toggled(toggled_on : bool) -> void:
-	%GraExpandable.visible = not toggled_on
-	%GraButton.icon = CHEVRON_DOWN if not toggled_on else CHEVRON_RIGHT
-	%GraButton.release_focus()
-	get_window().min_size.y += 108 if not toggled_on else -108
-#endregion
+	randomize()
+	
+
 
 #region SLIDERS
 func _on_red_bri_slide_value_changed(value : float) -> void:
@@ -110,7 +116,6 @@ func _on_red_shi_slide_value_changed(value : float) -> void:
 func _on_green_shi_slide_value_changed(value : float) -> void:
 	colors_manager.shift.y = -value
 	curves_display.shift.y = -value
-
 func _on_blue_shi_slide_value_changed(value : float) -> void:
 	colors_manager.shift.z = -value
 	curves_display.shift.z = -value
@@ -174,3 +179,20 @@ func _on_colors_manager_gui_input(event : InputEvent) -> void:
 #REDIRECT to Inigo Quilez blog
 func _on_rich_text_label_meta_clicked(meta):
 	OS.shell_open(str(meta))
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		var config = ConfigFile.new()
+		var data = config.load(path_to_settings)
+		if data != OK:
+			return
+		
+		config.set_value("Colors", "brightness", colors_manager.brightness)
+		config.set_value("Colors", "contrast", colors_manager.contrast)
+		config.set_value("Colors", "frequency", colors_manager.frequency)
+		config.set_value("Colors", "shift", -colors_manager.shift)
+		config.set_value("Colors", "steps", colors_manager.color_step)
+		
+		config.save(path_to_settings)
+		get_tree().quit()
+

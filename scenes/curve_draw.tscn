@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4eqx5y65kthc"]
 
-[ext_resource type="Script" path="res://TEST_ZONE/curve_manager.gd" id="1_37upw"]
-[ext_resource type="Script" path="res://TEST_ZONE/curve_draw.gd" id="1_yfp1h"]
+[ext_resource type="Script" path="res://scripts/curve_manager.gd" id="1_e6uej"]
+[ext_resource type="Script" path="res://scripts/curve_draw.gd" id="1_yfp1h"]
 
 [node name="CurvesDisplay" type="SubViewportContainer"]
 offset_right = 197.0
 offset_bottom = 66.0
-script = ExtResource("1_37upw")
+script = ExtResource("1_e6uej")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false

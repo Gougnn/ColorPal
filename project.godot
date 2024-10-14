@@ -10,17 +10,17 @@ config_version=5
 
 [application]
 
-config/name="CoolPal"
-config/version="0.0.1.0"
-run/main_scene="res://scenes/main_scene_rearrange.tscn"
+config/name="ColorPal"
+config/version="0.0.1.1"
+run/main_scene="res://scenes/main_observer.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/low_processor_mode=true
 boot_splash/show_image=false
-config/icon="res://assets/svg/paint-bucket.svg"
+config/icon="res://assets/svg/logo.svg"
 
 [display]
 
-window/size/viewport_width=644
+window/size/viewport_width=628
 window/size/viewport_height=621
 window/handheld/orientation=1
 window/vsync/vsync_mode=0

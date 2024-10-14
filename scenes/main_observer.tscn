@@ -1,17 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://bin8eo8v85snf"]
+[gd_scene load_steps=16 format=3 uid="uid://bin8eo8v85snf"]
 
-[ext_resource type="Script" path="res://TEST_ZONE/main_observer.gd" id="1_fe1gm"]
-[ext_resource type="Script" path="res://scenes/value_displayer.gd" id="5_rw1ny"]
-[ext_resource type="Theme" uid="uid://bfnahovc08m1s" path="res://assets/menu/theme_v0-0-2.tres" id="7_tdkjr"]
-[ext_resource type="PackedScene" uid="uid://d4eqx5y65kthc" path="res://TEST_ZONE/curve_draw.tscn" id="7_xh8y1"]
-[ext_resource type="FontFile" uid="uid://cue7m3epd17es" path="res://assets/menu/Roboto-Condensed.ttf" id="8_6si4m"]
-[ext_resource type="Texture2D" uid="uid://d3xu588rmq6gf" path="res://assets/svg/dice-6.svg" id="8_68ayx"]
-[ext_resource type="PackedScene" uid="uid://cnxdrp2bkhkqj" path="res://TEST_ZONE/codes_container.tscn" id="8_ece6y"]
-[ext_resource type="Texture2D" uid="uid://j1uxxbwubpqh" path="res://assets/svg/chevron-down.svg" id="8_nlt5q"]
-[ext_resource type="FontFile" uid="uid://osweypfislfo" path="res://assets/menu/Roboto-Regular.ttf" id="9_2b0cb"]
-[ext_resource type="Texture2D" uid="uid://du0020paubgpp" path="res://assets/svg/chevron-right.svg" id="9_oedwp"]
-[ext_resource type="FontFile" uid="uid://dgm00xei5xy21" path="res://assets/menu/Roboto-Bold.ttf" id="10_ea8ff"]
-[ext_resource type="Script" path="res://scenes/initial_popup.gd" id="10_g2wx7"]
+[ext_resource type="Script" path="res://scripts/main_observer.gd" id="1_gib28"]
+[ext_resource type="Theme" uid="uid://bfnahovc08m1s" path="res://assets/menu/theme_v0-0-2.tres" id="2_8w6n5"]
+[ext_resource type="Texture2D" uid="uid://d3xu588rmq6gf" path="res://assets/svg/dice-6.svg" id="3_fy4el"]
+[ext_resource type="Texture2D" uid="uid://j1uxxbwubpqh" path="res://assets/svg/chevron-down.svg" id="4_dprfu"]
+[ext_resource type="Script" path="res://scripts/button_collapse.gd" id="5_p7bnl"]
+[ext_resource type="Texture2D" uid="uid://du0020paubgpp" path="res://assets/svg/chevron-right.svg" id="6_hyh57"]
+[ext_resource type="Script" path="res://scripts/value_displayer.gd" id="7_dtqss"]
+[ext_resource type="PackedScene" uid="uid://d4eqx5y65kthc" path="res://scenes/curve_draw.tscn" id="8_77wer"]
+[ext_resource type="PackedScene" uid="uid://cnxdrp2bkhkqj" path="res://scenes/codes_container.tscn" id="9_wsvtv"]
+[ext_resource type="FontFile" uid="uid://cue7m3epd17es" path="res://assets/menu/Roboto-Condensed.ttf" id="10_02rnd"]
+[ext_resource type="Script" path="res://scripts/initial_popup.gd" id="11_jvcn3"]
+[ext_resource type="FontFile" uid="uid://osweypfislfo" path="res://assets/menu/Roboto-Regular.ttf" id="12_v0lsl"]
+[ext_resource type="FontFile" uid="uid://dgm00xei5xy21" path="res://assets/menu/Roboto-Bold.ttf" id="13_gh2pu"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_xrvcu"]
 device = -1
@@ -28,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fe1gm")
+script = ExtResource("1_gib28")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -37,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("7_tdkjr")
+theme = ExtResource("2_8w6n5")
 theme_type_variation = &"PanelContainerDarkSharp"
 
 [node name="MarginContainer" type="MarginContainer" parent="Background"]
@@ -56,7 +57,7 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 size_flags_vertical = 0
-theme = ExtResource("7_tdkjr")
+theme = ExtResource("2_8w6n5")
 theme_type_variation = &"PanelContainerDarkSharp"
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/TopBar"]
@@ -79,13 +80,13 @@ theme_override_constants/h_separation = 4
 shortcut = SubResource("Shortcut_co52j")
 shortcut_in_tooltip = false
 text = "Aléatoire"
-icon = ExtResource("8_68ayx")
+icon = ExtResource("3_fy4el")
 
 [node name="MainContainer" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("7_tdkjr")
+theme = ExtResource("2_8w6n5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer"]
 layout_mode = 2
@@ -112,15 +113,19 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
 
-[node name="BriButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness"]
+[node name="BriButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Luminosité"
-icon = ExtResource("8_nlt5q")
+icon = ExtResource("4_dprfu")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../BriExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="BriExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness"]
 unique_name_in_owner = true
@@ -206,7 +211,7 @@ text = "0.00
 "
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/RedBriSlide")
 
 [node name="GreenValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -218,7 +223,7 @@ text = "0.00
 "
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/GreenBriSlide")
 
 [node name="BlueValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -230,7 +235,7 @@ text = "0.00
 "
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/BlueBriSlide")
 
 [node name="2pxHSeparator" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer"]
@@ -245,7 +250,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
 
-[node name="ConButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast"]
+[node name="ConButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -253,8 +258,12 @@ theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Contraste
 "
-icon = ExtResource("9_oedwp")
+icon = ExtResource("6_hyh57")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../ConExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="ConExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast"]
 unique_name_in_owner = true
@@ -339,7 +348,7 @@ theme_override_font_sizes/font_size = 10
 text = "0.00
 "
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/RedConSlide")
 
 [node name="GreenValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -350,7 +359,7 @@ theme_override_font_sizes/font_size = 10
 text = "0.00
 "
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/GreenConSlide")
 
 [node name="BlueValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -361,7 +370,7 @@ theme_override_font_sizes/font_size = 10
 text = "0.00
 "
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/BlueConSlide")
 
 [node name="2pxHSeparator1" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer"]
@@ -376,15 +385,19 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
 
-[node name="FreButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency"]
+[node name="FreButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Fréquence"
-icon = ExtResource("8_nlt5q")
+icon = ExtResource("4_dprfu")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../FreExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="FreExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency"]
 unique_name_in_owner = true
@@ -473,7 +486,7 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/RedFreSlide")
 
 [node name="GreenValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -483,7 +496,7 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/GreenFreSlide")
 
 [node name="BlueValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -493,7 +506,7 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/BlueFreSlide")
 
 [node name="2pxHSeparator2" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer"]
@@ -508,15 +521,19 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 0
 
-[node name="ShiButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift"]
+[node name="ShiButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Décalage"
-icon = ExtResource("8_nlt5q")
+icon = ExtResource("4_dprfu")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../ShiExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="ShiExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift"]
 unique_name_in_owner = true
@@ -608,7 +625,7 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/RedShiSlide")
 
 [node name="GreenValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -618,7 +635,7 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/GreenShiSlide")
 
 [node name="BlueValue" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiExpandable/HBoxContainer/Values" node_paths=PackedStringArray("slider")]
@@ -628,58 +645,8 @@ theme_override_colors/font_color = Color(0.407843, 0.407843, 0.407843, 1)
 theme_override_font_sizes/font_size = 10
 text = "0.00"
 vertical_alignment = 1
-script = ExtResource("5_rw1ny")
+script = ExtResource("7_dtqss")
 slider = NodePath("../../Sliders/BlueShiSlide")
-
-[node name="IsolateColors" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/IsolateColors"]
-layout_mode = 2
-tooltip_text = "Ajuste le nombre de couleurs à afficher"
-theme_override_constants/separation = 0
-
-[node name="CheckButton" type="CheckButton" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/IsolateColors/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Isoler les couleurs"
-
-[node name="ColorSteps" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/ColorSteps"]
-layout_mode = 2
-tooltip_text = "Ajuste le nombre de couleurs à afficher"
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/ColorSteps/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.588235, 0.588235, 0.588235, 1)
-theme_override_constants/line_spacing = 0
-text = "Nombre de 
-couleurs"
-
-[node name="SpinBox" type="SpinBox" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/ColorSteps/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-mouse_filter = 1
-min_value = 1.0
-max_value = 20.0
-value = 5.0
-alignment = 2
 
 [node name="DisplayParameterContainer" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -690,15 +657,19 @@ theme_type_variation = &"PanelContainerMidLeftRound"
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="DisButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer"]
+[node name="DisButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Affichage"
-icon = ExtResource("8_nlt5q")
+icon = ExtResource("4_dprfu")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../DisExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="DisExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -755,15 +726,19 @@ theme_type_variation = &"PanelContainerMidLeftRound"
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="GraButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer"]
+[node name="GraButton" type="Button" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer" node_paths=PackedStringArray("expandable_part")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"ButtonCollapse"
 toggle_mode = true
 text = "Courbes"
-icon = ExtResource("9_oedwp")
+icon = ExtResource("6_hyh57")
 alignment = 0
+script = ExtResource("5_p7bnl")
+expandable_part = NodePath("../GraExpandable")
+icon_open = ExtResource("4_dprfu")
+icon_closed = ExtResource("6_hyh57")
 
 [node name="GraExpandable" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -773,14 +748,13 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="CurvesDisplay" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer/GraExpandable" instance=ExtResource("7_xh8y1")]
+[node name="CurvesDisplay" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer/GraExpandable" instance=ExtResource("8_77wer")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ColorsManager" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer" instance=ExtResource("8_ece6y")]
+[node name="ColorsManager" parent="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer" instance=ExtResource("9_wsvtv")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="BottomBar" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 8)
@@ -789,23 +763,23 @@ theme_type_variation = &"PanelContainerDarkSharp"
 
 [node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/BottomBar"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8_6si4m")
+theme_override_fonts/font = ExtResource("10_02rnd")
 theme_override_font_sizes/font_size = 12
 text = "version 0.0.1.0"
 horizontal_alignment = 2
 
 [node name="InitialPopup" type="Window" parent="."]
-title = "Bienvenue sur CoolPal !"
+disable_3d = true
+gui_embed_subwindows = true
+title = "Bienvenue sur ColorPal !"
 position = Vector2i(8, 36)
-size = Vector2i(628, 600)
+size = Vector2i(1, 576)
 visible = false
-transient = true
-exclusive = true
 unresizable = true
 transparent = true
 popup_window = true
-theme = ExtResource("7_tdkjr")
-script = ExtResource("10_g2wx7")
+theme = ExtResource("2_8w6n5")
+script = ExtResource("11_jvcn3")
 
 [node name="PanelContainer" type="PanelContainer" parent="InitialPopup"]
 anchors_preset = 15
@@ -825,17 +799,17 @@ theme_override_constants/margin_bottom = 8
 [node name="RichTextLabel" type="RichTextLabel" parent="InitialPopup/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/line_separation = 1
-theme_override_fonts/normal_font = ExtResource("9_2b0cb")
-theme_override_fonts/bold_font = ExtResource("10_ea8ff")
+theme_override_fonts/normal_font = ExtResource("12_v0lsl")
+theme_override_fonts/bold_font = ExtResource("13_gh2pu")
 bbcode_enabled = true
 text = "[font_size=16][center]
-	CoolPal est un générateur et éditeur de [rainbow]palette[/rainbow] basé sur une formule de
+	ColorPal est un générateur et éditeur de [rainbow]palette[/rainbow] basé sur une formule de
 [color=light_blue][url=https://iquilezles.org/articles/palettes/]Inigo Quilez[/url][/color].
 
 Cette formule permet de modifier la luminosité, le contraste, la fréquence et le décalage de chaque canal des couleurs afin de créer un dégradé cohérent.
 
 
-[indent]Pour finir voici quelques conseils et raccourcis calvier :[/indent][/center]
+[indent]Pour bien commencer voici quelques conseils et raccourcis calvier :[/indent][/center]
 
 [indent][indent][indent][ul]Il est recommandé de générer des palettes au hasard jusqu'à en trouver une qui plaise, puis d'affiner à partir de celle-ci pour se familiariser avec les différents paramètres
 [img]assets/svg/copy.svg[/img]  Double cliquer sur une couleur pour copier son code hexadécimal
@@ -848,29 +822,23 @@ Cette formule permet de modifier la luminosité, le contraste, la fréquence et 
 scroll_following = true
 
 [connection signal="pressed" from="Background/MarginContainer/VBoxContainer/TopBar/MarginContainer/HBoxContainer/Random" to="." method="_on_random_pressed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriButton" to="." method="_on_bri_button_toggled"]
 [connection signal="drag_ended" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/RedBriSlide" to="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/RedBriSlide" method="_on_drag_ended"]
 [connection signal="drag_started" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/RedBriSlide" to="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/RedBriSlide" method="_on_drag_started"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/RedBriSlide" to="." method="_on_red_bri_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/GreenBriSlide" to="." method="_on_green_bri_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Brightness/BriExpandable/HBoxContainer/Sliders/BlueBriSlide" to="." method="_on_blue_bri_slide_value_changed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConButton" to="." method="_on_con_button_toggled"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConExpandable/HBoxContainer/Sliders/RedConSlide" to="." method="_on_red_con_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConExpandable/HBoxContainer/Sliders/GreenConSlide" to="." method="_on_green_con_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Contrast/ConExpandable/HBoxContainer/Sliders/BlueConSlide" to="." method="_on_blue_con_slide_value_changed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreButton" to="." method="_on_fre_button_toggled"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreExpandable/HBoxContainer/Sliders/RedFreSlide" to="." method="_on_red_fre_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreExpandable/HBoxContainer/Sliders/GreenFreSlide" to="." method="_on_green_fre_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Frequency/FreExpandable/HBoxContainer/Sliders/BlueFreSlide" to="." method="_on_blue_fre_slide_value_changed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiButton" to="." method="_on_shi_button_toggled"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiExpandable/HBoxContainer/Sliders/RedShiSlide" to="." method="_on_red_shi_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiExpandable/HBoxContainer/Sliders/GreenShiSlide" to="." method="_on_green_shi_slide_value_changed"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/SlideParameterContainer/VBoxContainer/Shift/ShiExpandable/HBoxContainer/Sliders/BlueShiSlide" to="." method="_on_blue_shi_slide_value_changed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer/DisButton" to="." method="_on_display_toggled"]
 [connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer/DisExpandable/VBoxContainer/Gradient" to="." method="_on_gradient_toggled"]
 [connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer/DisExpandable/VBoxContainer/Isolate" to="." method="_on_isolate_toggled"]
 [connection signal="value_changed" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/DisplayParameterContainer/VBoxContainer/DisExpandable/VBoxContainer/HBoxContainer/SpinBox" to="." method="_on_spin_box_value_changed"]
-[connection signal="toggled" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/VBoxContainer/GraphParameterContainer/VBoxContainer/GraButton" to="." method="_on_gra_button_toggled"]
 [connection signal="gui_input" from="Background/MarginContainer/VBoxContainer/MainContainer/HBoxContainer/ColorsManager" to="." method="_on_colors_manager_gui_input"]
 [connection signal="close_requested" from="InitialPopup" to="InitialPopup" method="_on_close_requested"]
 [connection signal="meta_clicked" from="InitialPopup/PanelContainer/MarginContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

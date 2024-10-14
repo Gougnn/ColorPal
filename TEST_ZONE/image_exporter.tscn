@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8w0xg15mml7i"]
+
+[ext_resource type="Script" path="res://TEST_ZONE/image_exporter.gd" id="1_vo32y"]
+[ext_resource type="Shader" path="res://assets/shader/gradient.gdshader" id="2_gs7cx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jglrg"]
+shader = ExtResource("2_gs7cx")
+shader_parameter/steps = 5.0
+shader_parameter/brightness = Vector3(0.435, 0.335, 0.23)
+shader_parameter/contrast = Vector3(0.47, 0.45, 0.44)
+shader_parameter/frequency = Vector3(0.92, 0.315, 0.355)
+shader_parameter/shift = Vector3(0.285, 0.025, 0.145)
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ImageExporter" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(2200, 532)
+render_target_update_mode = 4
+script = ExtResource("1_vo32y")
+width = 2200
+height = 532
+
+[node name="Render" type="ColorRect" parent="ImageExporter"]
+material = SubResource("ShaderMaterial_jglrg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FileDialog" type="FileDialog" parent="."]
+position = Vector2i(0, 36)
+size = Vector2i(617, 364)
+mode_overrides_title = false
+access = 2
+filters = PackedStringArray("\"*.png, *jpeg, *jpg ; Supported Format\"")

@@ -1,6 +1,4 @@
-@tool
 extends Control
-
 
 signal color_copied
 
@@ -10,7 +8,7 @@ const COPY = preload("res://assets/svg/copy_cursor.svg")
 @onready var border = $Border
 
 var fade : Tween
-@export var string_content : String = 'TEST':
+@export var string_content : String = '':
 	set(value):
 		string_content = value
 		queue_redraw()
@@ -37,11 +35,12 @@ func _ready():
 	mouse_default_cursor_shape = Control.CURSOR_HELP
 	grow_horizontal = Control.GROW_DIRECTION_BOTH
 	grow_vertical = Control.GROW_DIRECTION_BOTH
+	set_self_modulate(Color.TRANSPARENT)
 
 #METHODES
-func adapt_font_size():
-	return min(floor(size.x / 2), floor (size.y/ 8)) if is_vertical else \
-		   floor(size.x / 5)
+func adapt_font_size(block_size : Vector2):
+	return min(floor(block_size.x / 2), floor (block_size.y/ 8)) if is_vertical else \
+		   floor(block_size.x / 5)
 
 func get_string_size(string : String, vertical : bool):
 	return font.get_string_size(
@@ -66,7 +65,7 @@ func draw_outline():
 	if !is_isolated:
 		border.hide()
 	else:
-		var thickness : int = floor(size.x * 0.05)
+		var thickness : int = floor(size.x * 0.075)
 		var style_box : StyleBoxFlat = StyleBoxFlat.new()
 		style_box.bg_color = Color.TRANSPARENT
 		style_box.border_color = Color.WHITE
@@ -101,10 +100,6 @@ func _draw():
 	draw_string_content()
 
 #SIGNAL
-func _on_resized():
-	is_vertical = true if size.x < 100 else false
-	font_size = int(adapt_font_size())
-
 func _on_mouse_entered():
 	if fade:
 		fade.kill()
