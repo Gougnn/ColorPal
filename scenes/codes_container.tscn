@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dr1nmuvxl3kre" path="res://scenes/color_block.tscn" id="4_o264u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0220"]
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 anti_aliasing = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov062"]

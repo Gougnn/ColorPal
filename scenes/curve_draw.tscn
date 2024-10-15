@@ -4,8 +4,10 @@
 [ext_resource type="Script" path="res://scripts/curve_draw.gd" id="1_yfp1h"]
 
 [node name="CurvesDisplay" type="SubViewportContainer"]
-offset_right = 197.0
-offset_bottom = 66.0
+offset_right = 242.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_e6uej")
 
 [node name="SubViewport" type="SubViewport" parent="."]
